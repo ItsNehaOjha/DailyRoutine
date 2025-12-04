@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.routine.controller.MainViewController"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <top>
+        <Label text="Daily Routine Tracker" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane">
+
+            <tabs>
+                <!-- Add Log tab -->
+                <Tab text="Add Log" closable="false">
+                    <AnchorPane>
+                        <GridPane hgap="10" vgap="10" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints minWidth="120" />
+                                <ColumnConstraints minWidth="220" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="30"/>
+                                <RowConstraints minHeight="30"/>
+                                <RowConstraints minHeight="30"/>
+                                <RowConstraints minHeight="30"/>
+                                <RowConstraints minHeight="30"/>
+                                <RowConstraints minHeight="90"/>
+                                <RowConstraints minHeight="40"/>
+                            </rowConstraints>
+
+                            <children>
+                                <Label text="Date (yyyy-MM-dd)" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <TextField fx:id="dateField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="Study hours" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <TextField fx:id="studyField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                <Label text="Sleep hours" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                <TextField fx:id="sleepField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <Label text="Mood (1-5)" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="moodBox" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                <Label text="Distraction" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                                <TextField fx:id="distractionField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                                <Label text="Notes" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                                <TextArea fx:id="notesArea" GridPane.rowIndex="5" GridPane.columnIndex="1" prefRowCount="3"/>
+
+                                <Button text="Save Log" fx:id="saveButton" GridPane.rowIndex="6" GridPane.columnIndex="1" onAction="#handleSaveLog"/>
+                            </children>
+                        </GridPane>
+                    </AnchorPane>
+                </Tab>
+
+                <!-- View Logs tab -->
+                <Tab text="View Logs" closable="false">
+                    <BorderPane>
+                        <top>
+                            <ToolBar>
+                                <Button text="Refresh" onAction="#handleRefreshLogs"/>
+                            </ToolBar>
+                        </top>
+                        <center>
+                            <TableView fx:id="logTable">
+                                <columns>
+                                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="120"/>
+                                    <TableColumn fx:id="studyColumn" text="Study" prefWidth="80"/>
+                                    <TableColumn fx:id="sleepColumn" text="Sleep" prefWidth="80"/>
+                                    <TableColumn fx:id="moodColumn" text="Mood" prefWidth="60"/>
+                                    <TableColumn fx:id="distractionColumn" text="Distraction" prefWidth="150"/>
+                                    <TableColumn fx:id="notesColumn" text="Notes" prefWidth="240"/>
+                                </columns>
+                            </TableView>
+                        </center>
+                    </BorderPane>
+                </Tab>
+
+                <!-- Insights tab -->
+                <Tab text="Insights" closable="false">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+
+                        <Label text="Average study hours:"/>
+                        <Label fx:id="avgStudyLabel" text="-"/>
+                        <Label text="Average sleep hours:"/>
+                        <Label fx:id="avgSleepLabel" text="-"/>
+                        <Label text="Most frequent distraction:"/>
+                        <Label fx:id="topDistractionLabel" text="-"/>
+                        <Button text="Recalculate" onAction="#handleRecalculateInsights"/>
+                    </VBox>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
