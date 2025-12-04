@@ -1,105 +1,147 @@
-# Daily Routine Optimizer (JavaFX + SQLite)
+# Daily Routine Optimizer 📝 (JavaFX + SQLite)
+
+![Java](https://img.shields.io/badge/Java-17-blue)
+![JavaFX](https://img.shields.io/badge/JavaFX-UI%20Framework-orange)
+![SQLite](https://img.shields.io/badge/SQLite-Database-blue)
+![Platform](https://img.shields.io/badge/Platform-Desktop-success)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 A lightweight **Core Java desktop application** for tracking daily study hours, sleep, mood, distractions, and notes.  
-Built using **JavaFX** for UI and **SQLite (JDBC)** for data storage.  
-No Maven. No Spring Boot. Pure Core Java.
+Built using **JavaFX** for UI and **SQLite (via JDBC)** for storage.  
+No Maven. No Spring Boot. **Pure Core Java.**
 
 ---
 
-## 1. Features
+## 🚀 Features
 
-### **Add Daily Log**
+### ✅ Add Daily Log
 - Date (yyyy-MM-dd)  
 - Study hours  
 - Sleep hours  
 - Mood rating (1–5)  
 - Distraction  
-- Notes  
+- Notes (multi-line)
 
-### **View Logs**
-- TableView listing all logs  
+### 📄 View Logs
+- TableView of all records  
 - Sorted by date  
-- Refresh option  
+- Refresh button  
 
-### **Insights**
+### 📊 Insights Dashboard
 - Average study hours  
 - Average sleep hours  
 - Most frequent distraction  
-- Simple mood trend  
+- Basic mood trend  
 
-### **Database**
-- Uses `dailyroutine.db` (SQLite) stored locally next to the `.java` code  
-- Table auto-created on first run  
+### 💾 Local Database
+- SQLite file: **`dailyroutine.db`**  
+- Auto-table creation on first launch  
+- Fully offline, portable  
 
 ---
 
-## 2. Tech Stack
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|------------|
 | Language | Core Java (JDK 17) |
-| UI | JavaFX (FXML + Controls) |
+| UI | JavaFX (Controls + FXML) |
 | Database | SQLite |
 | DB Access | JDBC (sqlite-jdbc driver) |
 | IDE | IntelliJ IDEA |
-| Build | IntelliJ Project (no Maven/Gradle) |
+| Build | Plain IntelliJ project (no Maven/Gradle) |
 
 ---
 
-4.How to Run This Project (after cloning)
-Step 1 — Install Requirements
+## 📁 Project Structure
 
-Install JDK 17
+src/
+ ├─ com.routine.db/
+ │   └─ DBConnection.java
+ ├─ com.routine.model/
+ │   └─ DailyLog.java
+ ├─ com.routine.dao/
+ │   └─ DailyLogDAO.java
+ ├─ com.routine.controller/
+ │   └─ MainViewController.java
+ ├─ com.routine.ui/
+ │   └─ Main.java
+ └─ com.routine.ui/
+     └─ MainView.fxml
 
-Download JavaFX SDK 17
-https://gluonhq.com/products/javafx/
 
-Make sure sqlite-jdbc-x.x.x.jar is inside the project's lib/ folder
+## 🧩 How to Run This Project (After Cloning)
 
-Step 2 — Configure IntelliJ
+### **Step 1 — Install Requirements**
+1. Install **JDK 17**
+2. Download **JavaFX SDK 17**  
+   👉 https://gluonhq.com/products/javafx/
+3. Ensure `sqlite-jdbc-x.x.x.jar` is inside your project’s **lib/** folder.
 
-Open IntelliJ → File → Open Project → select your cloned repo
+---
 
+### **Step 2 — Configure IntelliJ**
+1. Open IntelliJ → **File → Open** → select project  
+2. Go to:  
+   **File → Project Structure → Libraries → Add → Java**  
+   - Select folder: `JavaFX SDK → lib/`  
+   - Add it  
+3. Add SQLite JDBC JAR as another library  
+4. Apply → OK
+
+---
+
+### **Step 3 — Configure Run Settings**
 Go to:
-File → Project Structure → Libraries → Add → Select JavaFX SDK → lib folder
 
-Also add the SQLite JDBC .jar as a library
+**Run → Edit Configurations → + → Application**
 
-Apply → OK
+Set values:
 
-Step 3 — Update Run Configuration
+#### **Main class**
+com.routine.ui.Main
 
-Go to Run → Edit Configurations → Add New → Application
 
-Set:
+#### **VM Options**
 
-Main class: com.routine.ui.Main
-
-VM Options:
 
 --module-path "PATH_TO_FX/lib" --add-modules javafx.controls,javafx.fxml
 
 
 Example:
 
+
 --module-path "E:\javafx-sdk-17.0.17\lib" --add-modules javafx.controls,javafx.fxml
 
 
-Ensure your classpath includes:
+#### Ensure classpath includes:
+- `out/production/<your-project>`  
+- `sqlite-jdbc.jar`
 
-out/production/<project>
+---
 
-sqlite-jdbc.jar
+### **Step 4 — Run the Application**
+Click **Run ▶**.
 
-Step 4 — Run the Application
+If configured correctly:
+- The JavaFX UI opens  
+- `dailyroutine.db` is created automatically  
+- You can add/view logs  
 
-Click Run ▶
-If everything is configured correctly, the UI will launch and dailyroutine.db will be created automatically.
+---
 
-5. Notes
+## 📝 Notes
+- The project does **not** use Maven or Spring Boot  
+- JavaFX must **always** be added manually in VM options  
+- The SQLite DB file remains local and portable  
+- The project is intentionally simple and clean for academic demonstration  
 
-The project does not require Maven or Spring Boot
+---
 
-SQLite DB file stays local; portable across machines
+## 📜 License
+MIT License – free to use and modify.
 
-JavaFX must always be added manually to VM options
+---
+
+## ⭐ If you like this project
+Star ⭐ the repo and share it!
